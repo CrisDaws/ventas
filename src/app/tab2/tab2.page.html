@@ -1,7 +1,19 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 2
+    <ion-title
+      style="
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+          sans-serif;
+      "
+    >
+      Compras
+      <ion-button
+        style="margin-left: 180px"
+        routerLink="/home"
+        routerLinkActive="active"
+      >
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +21,31 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Compras</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-card
+    *ngFor="let producto of productoService.productos"
+    style="text-align: center"
+  >
+    <ion-card-header>
+      <ion-card-subtitle>Nombre: {{producto.nombre}}</ion-card-subtitle>
+      <ion-card-title>Precio: {{producto.precio}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content style="color: cadetblue">
+      <p>Marca: {{producto.marca}}</p>
+      <p>Tipo: {{producto.tipo}}</p>
+      <p>Talla: {{producto.talla}}</p>
+    </ion-card-content>
+    <ion-button
+      expand="block"
+      (click)="deleteProductos(producto._id, productoForm)"
+      color="success"
+      (click)=presentAlert()
+
+      >Comprar Ahora</ion-button
+    >
+  </ion-card>
 </ion-content>
